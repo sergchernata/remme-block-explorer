@@ -1,0 +1,29 @@
+import React from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+
+import App from '../App';
+import {
+  Home,
+  Blocks,
+  BlockDetails,
+  Transactions,
+  TransactionDetails,
+  AddressDetails,
+  NotFound
+} from '../pages';
+
+export default () => (
+  <Router>
+    <App>
+      <Switch>
+        <Route exact path="/" component={Home} />
+        <Route exact path="/blocks" component={Blocks} />
+        <Route exact path="/blocks/:id" component={BlockDetails}/>
+        <Route exact path="/transactions" component={Transactions} />
+        <Route exact path="/transactions/:id" component={TransactionDetails}/>
+        <Route exact path="/address/:id" component={AddressDetails}/>
+        <Route component={NotFound}/>
+      </Switch>
+    </App>
+  </Router>
+);
