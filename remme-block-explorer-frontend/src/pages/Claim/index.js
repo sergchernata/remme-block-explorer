@@ -1,11 +1,9 @@
 import React, { Fragment, Component } from "react";
 import { Modal, Form, Divider } from "antd";
 import axios from 'axios';
-import fs from 'fs';
 import download from 'react-file-download';
-import Remme from 'remme';
 
-
+import { urls } from "../../config";
 import CreateForm from '../../components/CreateForm';
 
 class ClaimForm extends Component {
@@ -54,12 +52,14 @@ class ClaimForm extends Component {
   }
 
   handleClick = () => {
-    const keys = Remme.Client.generateAccount();
-    const data = {
-      publicKey: keys.publicKeyHex,
-      privateKey: keys.privateKeyHex
-    }
-    download(JSON.stringify(data), "keystore.txt");
+    axios.get(urls.generateAccount)
+    .then(function (response) {
+      const data = {
+        publicKey: response.data.publicKey,
+        privateKey: response.data.privateKey
+      }
+      download(JSON.stringify(data), "keystore.txt");
+    })
   }
 
   handleSubmit = async (values) => {

@@ -2,6 +2,7 @@ import "babel-polyfill";
 import express from "express";
 import path from "path";
 import bodyParser from "body-parser";
+import Remme from 'remme';
 import cors from "cors";
 import { config } from "dotenv";
 
@@ -28,6 +29,15 @@ app.use("/api/transactions", transactions);
 app.use("/api/blocks", blocks);
 app.use("/api/state", state);
 app.use("/api/block-info", blockInfo);
+
+app.get('/api/generate-account', (req, res) => {
+  const keys = Remme.Client.generateAccount();
+  const data = {
+    publicKey: keys.publicKeyHex,
+    privateKey: keys.privateKeyHex
+  }
+  res.json(data);
+});
 
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../build/index.html'));
