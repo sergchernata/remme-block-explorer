@@ -1,5 +1,6 @@
 import Home from './Home';
 import Claim from './Claim';
+import Feedback from './Feedback';
 import Blocks from './Blocks';
 import BlockDetails from './BlockDetails';
 import Transactions from './Transactions';
@@ -15,5 +16,6 @@ export {
   Transactions,
   TransactionDetails,
   AddressDetails,
-  NotFound
+  NotFound,
+  Feedback
 };

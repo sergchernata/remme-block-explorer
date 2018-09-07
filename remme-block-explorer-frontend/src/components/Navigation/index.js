@@ -6,18 +6,19 @@ const NavigationItems = [{
     title: 'Home',
     link: '/',
     icon: 'home'
-  },
-  {
-      title: 'Claim Tokens',
-      link: '/claim',
-      icon: 'credit-card'
-    }
+  }
 ];
 
 const about_menu = (
   <Menu>
     <Menu.Item key="0">
-      <a href="https://remme.io/about-us">About Us</a>
+      <a href="https://remme.webflow.io/platform-overview">Platform Overview</a>
+    </Menu.Item>
+    <Menu.Item key="1">
+      <a href="https://remme.io/remchain">REMChain</a>
+    </Menu.Item>
+    <Menu.Item key="2">
+      <a href="https://remme.io/community">Community</a>
     </Menu.Item>
   </Menu>
 );
@@ -25,10 +26,13 @@ const about_menu = (
 const testnet_menu = (
   <Menu>
     <Menu.Item key="0">
-      <a href="https://remme.io">Testnet Home</a>
+      <a href="https://docs.remme.io/">How To Use</a>
     </Menu.Item>
     <Menu.Item key="1">
-      <a href="https://docs.remme.io/">Documentation</a>
+      <Link to="/claim">Claim Tokens</Link>
+    </Menu.Item>
+    <Menu.Item key="2">
+      <a href="https://docs.remme.io/">Share Your Feedback</a>
     </Menu.Item>
   </Menu>
 );
@@ -62,12 +66,12 @@ class Navigation extends Component {
       <div style={{float: "right"}}>
         <Menu theme="dark" mode="horizontal" defaultSelectedKeys={["/"]} selectedKeys={[location.pathname]}>
           { NavigationItems.map( item =>
-              <Menu.Item key={item.link}>
-                <Link to={item.link}>
-                  <Icon type={item.icon} />
-                  <span>{item.title}</span>
-                </Link>
-              </Menu.Item>
+            <Menu.Item key={item.link}>
+              <Link to={item.link}>
+                <Icon type={item.icon} />
+                <span>{item.title}</span>
+              </Link>
+            </Menu.Item>
           )}
         </Menu>
 
@@ -89,17 +93,17 @@ class Navigation extends Component {
          </a>
         </Dropdown>
 
+        <a href="https://remme.io/community">
+         <Button type="primary" style={{ marginLeft: 8 }}>
+           Join Tech Community
+         </Button>
+        </a>
+
         <Dropdown overlay={testnet_menu}>
           <Button style={{ marginLeft: 8 }}>
             Join Testnet
           </Button>
         </Dropdown>
-
-        <a href="https://remme.io/community">
-         <Button style={{ marginLeft: 8 }}>
-           Join Tech Community
-         </Button>
-        </a>
      </div>
     )
   }

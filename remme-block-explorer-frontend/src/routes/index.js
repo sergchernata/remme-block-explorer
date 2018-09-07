@@ -5,6 +5,7 @@ import App from '../App';
 import {
   Home,
   Claim,
+  Feedback,
   Blocks,
   BlockDetails,
   Transactions,
@@ -19,6 +20,7 @@ export default () => (
       <Switch>
         <Route exact path="/" component={Home} />
         <Route exact path="/claim" component={Claim} />
+        <Route exact path="/feedback" component={Feedback} />
         <Route exact path="/blocks" component={Blocks} />
         <Route exact path="/blocks/:id" component={BlockDetails}/>
         <Route exact path="/transactions" component={Transactions} />
