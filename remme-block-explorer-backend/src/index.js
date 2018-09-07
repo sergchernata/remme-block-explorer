@@ -39,8 +39,8 @@ app.get('/api/generate-account', (req, res) => {
   res.json(data);
 });
 
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../build/index.html'));
-});
+// app.get('*', (req, res) => {
+//   res.sendFile(path.join(__dirname, '../build/index.html'));
+// });
 
 app.listen(port, () => console.log(`Running on localhost:${port}`));

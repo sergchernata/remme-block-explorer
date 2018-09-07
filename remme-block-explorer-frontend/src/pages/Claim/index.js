@@ -18,8 +18,6 @@ class ClaimForm extends Component {
     },
   };
 
-  //027ef9261c1c683926bfe77f9d2607730ab287f117eb3b58a5a2fb6e2400e14c3e
-  //vatrushkin@gmail.com
   scheme = [
     {
       name: 'pubKey',
