@@ -17,18 +17,26 @@ body {
 /*Header*/
 
 .logo {
-  height: 64px;
-  position: relative;
-  line-height: 64px;
-  padding-left: 24px;
-  -webkit-transition: all .3s;
-  transition: all .3s;
-  background: #002140;
-  overflow: hidden;
+  width: 170px;
+  height: 31px;
+  float: left;
 }
 
 .logo img {
-  width: 32px;
+  width: 150px;
+}
+
+.logo a { position: relative;}
+
+.logo a::after {
+  content: "Testnet";
+  position: absolute;
+  bottom: -14px;
+  font-size: 13px;
+  left: 44px;
+  color: #2990ff;
+  line-height: 1;
+  font-weight: 600;
 }
 
 .logo h1 {
@@ -43,7 +51,7 @@ body {
 }
 
 .logo h1::after {
-  content: "Block Explorer";
+  content: "Testnet";
   position: absolute;
   bottom: -15px;
   font-size: 10px;
@@ -51,10 +59,6 @@ body {
   color: #7522e2;
 }
 
-.ant-layout-header {
-  background: rgb(255, 255, 255);
-  padding: 0px;
-}
 
 .trigger {
   font-size: 18px;
@@ -68,10 +72,30 @@ body {
   color: #1890ff;
 }
 
-/* Side-menu*/
+/* menu*/
 
-.ant-menu-dark .ant-menu-submenu {
-    color: rgba(255, 255, 255, 0.65);
+.ant-layout-header {
+  background: #001529;
+
+}
+
+.ant-layout-header-wr {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.ant-menu-dark.ant-menu-horizontal {
+  float: left;
+  line-height: 64px;
+}
+
+.ant-menu-item, .ant-menu-submenu-title {
+  padding: 0 12px;
+}
+
+.ant-nav-dropdown {
+  color: rgba(255, 255, 255, 0.65);
+  padding: 0 10px;
 }
 
 /*Content*/
@@ -86,13 +110,31 @@ body {
 }
 
 .ant-row {
-    margin-bottom: 50px;
+    margin-bottom: 10px;
 }
 
-.nav-right {
+.social-links {
   display: inline-block;
   float: right;
   padding: 0 24px;
+}
+
+.social-links a {
+  margin-right: 10px;
+}
+
+.social-link {
+  -webkit-transition: opacity .3s;
+  -o-transition: opacity .3s;
+  transition: opacity .3s;
+}
+
+.social-link:hover {
+  opacity: 0.75;
+}
+
+.social-link img {
+margin-bottom: 1px;
 }
 
 .remme-stat-list span {

@@ -6,6 +6,7 @@ import BlockInfo from './BlockInfo';
 import BlockInfoPlaceHolder from "./BlockInfo/placeholder";
 import Navigation from './Navigation';
 import CreateTable from './CreateTable';
+import CreateForm from './CreateTable';
 import CreateTablePlaceHolder from './CreateTable/placeholder';
 import CreateList from './CreateList';
 import Social from './Social';
@@ -21,6 +22,7 @@ export {
   BlockInfoPlaceHolder,
   Navigation,
   CreateTable,
+  CreateForm,
   CreateTablePlaceHolder,
   CreateList,
   Social,

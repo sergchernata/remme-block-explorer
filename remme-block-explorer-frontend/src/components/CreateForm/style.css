@@ -1,0 +1,9 @@
+.claim-form {
+  max-width: 300px;
+  margin: 0 auto;
+}
+
+
+.ant-form-item-label {
+  text-align: left;
+}
