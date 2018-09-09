@@ -1,10 +1,11 @@
 import React, { Fragment, Component } from "react";
-import { Modal, Form, Divider } from "antd";
+import { Modal, Form, Divider, Alert, Row, Col } from "antd";
 import axios from 'axios';
 import download from 'react-file-download';
 
 import { urls } from "../../config";
 import CreateForm from '../../components/CreateForm';
+import "./style.css";
 
 class ClaimForm extends Component {
 
@@ -28,10 +29,10 @@ class ClaimForm extends Component {
     },
     {
       name: 'login',
-      label: 'Your Discord login',
+      label: 'Your Discord username',
       type: 'String',
       required: true,
-      message: 'Please input your Discord login !'
+      message: 'Please input your Discord username !'
     }
   ];
 
@@ -89,7 +90,11 @@ class ClaimForm extends Component {
           Claim Testnet Tokens
         </h2>
         <Divider />
-        <p style={{textAlign: "center"}}>Enter your public key and email to get REM tokens. If you do not have keys you can <a onClick={this.handleClick}>generate</a> new ones. </p>
+
+
+
+        <h3 style={{textAlign: "center"}}>Enter your Public Key and Discord username to get REM test tokens.</h3>
+        <Alert message="Please note you should be registered as REMME Tech Community member." type="warning" />
         <CreateForm
           layout={{ items: this.formItemLayout }}
           onSubmit={this.handleSubmit}
@@ -97,6 +102,12 @@ class ClaimForm extends Component {
           buttonName="GET"
           className="claim-form"
         />
+
+        <Row className="clime-rows">
+          <Col span={12}>Don't have keys? <br /> Generate <a onClick={this.handleClick}>here</a> </Col>
+          <Col span={12}>Not registered in REMME Tech Community? <br /> <a href="https://remme.io/community">Join us</a></Col>
+        </Row>
+
       </Fragment>
     )
   }
