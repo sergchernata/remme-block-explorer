@@ -32,7 +32,7 @@ const testnet_menu = (
       <Link to="/claim">Claim Tokens</Link>
     </Menu.Item>
     <Menu.Item key="2">
-      <a href="https://docs.remme.io/">Share Your Feedback</a>
+      <Link to="/feedback">Share Your Feedback</Link>
     </Menu.Item>
   </Menu>
 );
