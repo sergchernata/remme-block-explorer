@@ -116,11 +116,11 @@ Run docker container with backend. ::
 
 If you are going to connect blockexplore to your own node you should cnange "NODE_ADDRESS" in .env file:
 
-  # NODE ADDRESS (IF EMPTY WIL BE USE LOCALHOST)
-  NODE_ADDRESS="YOUR_NODE_ADDRESS"
-
-  # SERVER PORT (IF EMPTY WILL BE RUN ON 3000)
-  PORT=
+  | # NODE ADDRESS (IF EMPTY WIL BE USE LOCALHOST)
+  | NODE_ADDRESS="YOUR_NODE_ADDRESS"
+  |
+  | # SERVER PORT (IF EMPTY WILL BE RUN ON 3000)
+  | PORT=
 
 Change ngnix.conf using the config file, replace directories path and server domain name. Then Restart nginx. ::
 
