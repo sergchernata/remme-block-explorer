@@ -12,13 +12,13 @@ const NavigationItems = [{
 const about_menu = (
   <Menu>
     <Menu.Item key="0">
-      <a href="https://remme.webflow.io/platform-overview">Platform Overview</a>
+      <a target="_blank" href="https://remme.webflow.io/platform-overview">Platform Overview</a>
     </Menu.Item>
     <Menu.Item key="1">
-      <a href="https://remme.io/remchain">REMChain</a>
+      <a target="_blank" href="https://remme.io/remchain">REMChain</a>
     </Menu.Item>
     <Menu.Item key="2">
-      <a href="https://remme.io/community">Community</a>
+      <a target="_blank" href="https://remme.io/community">Community</a>
     </Menu.Item>
   </Menu>
 );
@@ -26,7 +26,7 @@ const about_menu = (
 const testnet_menu = (
   <Menu>
     <Menu.Item key="0">
-      <a href="https://docs.remme.io/">How To Use</a>
+      <a target="_blank" href="https://docs.remme.io/remme-block-explorer/docs/">How To Use</a>
     </Menu.Item>
     <Menu.Item key="1">
       <Link to="/claim">Claim Tokens</Link>
@@ -40,10 +40,13 @@ const testnet_menu = (
 const resources_menu = (
   <Menu>
     <Menu.Item key="0">
-      <a href="https://medium.com/remme">Blog</a>
+      <a target="_blank" href="https://medium.com/remme">Blog</a>
     </Menu.Item>
     <Menu.Item key="1">
-      <a href="https://support.remme.io/">Knowledge Base</a>
+      <a target="_blank" href="https://support.remme.io/">Knowledge Base</a>
+    </Menu.Item>
+    <Menu.Item key="2">
+      <a target="_blank" href="https://docs.remme.io/">Documentation</a>
     </Menu.Item>
   </Menu>
 );
@@ -93,7 +96,7 @@ class Navigation extends Component {
          </a>
         </Dropdown>
 
-        <a href="https://remme.io/community">
+        <a target="_blank" href="https://remme.io/community">
          <Button type="primary" style={{ marginLeft: 8 }}>
            Join Tech Community
          </Button>

@@ -65,7 +65,7 @@ class ClaimForm extends Component {
     const { pubKey, login } = values;
     const data = {
       "remmePublicKey": pubKey,
-      "email": login
+      "discord": login
     };
     const options = {
       method: 'POST',
