@@ -71,7 +71,7 @@ class ClaimForm extends Component {
       method: 'POST',
       headers: { 'content-type': 'application/json; charset=utf-8' },
       data: data,
-      url: "http://46.101.18.109/api/faucet"
+      url: "/api/faucet"
     };
 
     axios(options)
