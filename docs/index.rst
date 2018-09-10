@@ -99,6 +99,10 @@ Requirements
 Installation
 -----------------
 
+Clone REMME blockexplorer repository into a directory on your server. ::
+
+  git clone https://github.com/Remmeauth/remme-block-explorer.git
+
 Open repository with frontend and build the app for production to the build folder. ::
 
   cd remme-block-explorer-frontend
@@ -109,6 +113,14 @@ Run docker container with backend. ::
 
   cd remme-block-explorer-backend
   docker-compose up
+
+If you are going to connect blockexplore to your own node you should cnange "NODE_ADDRESS" in .env file:
+
+  # NODE ADDRESS (IF EMPTY WIL BE USE LOCALHOST)
+  NODE_ADDRESS="YOUR_NODE_ADDRESS"
+
+  # SERVER PORT (IF EMPTY WILL BE RUN ON 3000)
+  PORT=
 
 Change ngnix.conf using the config file, replace directories path and server domain name. Then Restart nginx. ::
 
