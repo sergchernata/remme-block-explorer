@@ -4,7 +4,7 @@ REMME Block Explorer
 Overview
 -----------------
 
-`REMME Block Explorer <https://explorer-testnet.remme.io>`_ is an open source web tool that allows to view information about blocks and transactions on the REMME blockchain. Home page of the Block Explorer contains a list of the top 10 blocks and transactions. Pages `View Blocks <https://explorer-testnet.remme.io/blocks>`_ and `View Txns <https://explorer-testnet.remme.io/transactions>`_ contain lists with all items.
+`REMME Block Explorer <https://blockexplorer.remme.io>`_ is an open source web tool that allows to view information about blocks and transactions on the REMME blockchain. Home page of the Block Explorer contains a list of the top 10 blocks and transactions. Pages `View Blocks <https://blockexplorer.remme.io/blocks>`_ and `View Txns <https://blockexplorer.remme.io/transactions>`_ contain lists with all items.
 
 Blocks
 -----------------
@@ -33,7 +33,8 @@ Blocks are sorted by block_num and hold batches of transactions. This batch incl
 
 Transactions
 -----------------
-A transaction is a transfer of REMME value that is broadcast to the network and collected into blocks. Transactions are not encrypted, so it is possible to view every transaction. The payload data varies depending on the type of transaction and depends on the protobuf. Key parameters of transactions:
+A transaction is a transfer of REMME value that is broadcast to the network and collected into blocks. Transactions are not encrypted, so it is possible to view every transaction. The payload data varies depending on the type of transaction and depends on the protobuf. Currently REMChain includes 3 transaction families (pub_key, account, AtomicSwap). `The Public Key transaction family <https://docs.remme.io/remme-core/docs/family-pub-key.html?highlight=pub_key>`_ provides storing public keys. `The Account transaction family <https://docs.remme.io/remme-core/docs/family-account.html#account-transaction-family>`_ executes logic for managing agents on the REMME blockchain. `The Atomic Swap transaction family <https://docs.remme.io/remme-core/docs/family-atomic-swap.html#atomic-swap-transaction-family>`_ provides means for universal exchange between two agents in separate chains.
+Key parameters of transactions:
 
 +-----------------------+-------------------------------------------------------------------------------+
 | Option                | Explanation                                                                   |
