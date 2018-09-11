@@ -36,16 +36,17 @@ class ClaimForm extends Component {
     }
   ];
 
-  showModal = (data) => {
-    if (data.status == 200) {
+  showModal = (response) => {
+    if (response.status == 200) {
+      console.log(response.data);
       Modal.success({
         title: 'Success!',
-        content: 'BathcId: ' + data.data.bathcId
+        content: 'BathcId: ' + response.data.bathcId
       });
     } else {
       Modal.error({
         title: 'Error!',
-        content: data.data.message ? data.data.message : "The input was not valid."
+        content: response.data.message ? response.data.message : "The input was not valid."
       });
     }
   }
@@ -61,20 +62,18 @@ class ClaimForm extends Component {
     })
   }
 
-  handleSubmit = async (values) => {
+  handleSubmit = (values) => {
     const { pubKey, login } = values;
     const data = {
       "remmePublicKey": pubKey,
       "discord": login
     };
-    const options = {
+
+    axios.post(urls.faucet, {
       method: 'POST',
       headers: { 'content-type': 'application/json; charset=utf-8' },
-      data: data,
-      url: "/api/faucet"
-    };
-
-    axios(options)
+      data: data
+    })
       .then(response => {
         this.showModal(response);
       })
@@ -91,8 +90,6 @@ class ClaimForm extends Component {
         </h2>
         <Divider />
 
-
-
         <h3 style={{textAlign: "center"}}>Enter your Public Key and Discord username to get REM test tokens.</h3>
         <Alert message="Please note you should be registered as REMME Tech Community member." type="warning" />
         <CreateForm
@@ -105,7 +102,7 @@ class ClaimForm extends Component {
 
         <Row className="clime-rows">
           <Col span={12}>Don't have keys? <br /> Generate <a onClick={this.handleClick}>here</a> </Col>
-          <Col span={12}>Not registered in REMME Tech Community? <br /> <a href="https://remme.io/community">Join us</a></Col>
+          <Col span={12}>Not registered in REMME Tech Community? <br /> <a target="_blank" href="https://remme.io/community#join-tech-community">Join us</a></Col>
         </Row>
 
       </Fragment>

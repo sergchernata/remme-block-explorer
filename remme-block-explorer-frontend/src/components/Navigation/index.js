@@ -2,111 +2,146 @@ import React, { Component } from 'react'
 import { Link, withRouter } from 'react-router-dom';
 import { Menu, Icon, Dropdown, Button } from 'antd';
 
-const NavigationItems = [{
+const NavigationItems = [
+  {
     title: 'Home',
     link: '/',
-    icon: 'home'
-  }
+    icon: 'home',
+    type: 'simple',
+    key: 1,
+  }, {
+    title: 'Blockchain',
+    icon: 'bars',
+    type: 'list',
+    key: 2,
+    items: [{
+        title: 'View Blocks',
+        link: "/blocks",
+        key: 1
+      },{
+        title: 'View Txns',
+        link: "/transactions",
+        key: 2
+    }]
+  },{
+    title: 'About REMME',
+    icon: 'team',
+    type: 'list',
+    key: 3,
+    items: [{
+        title: 'Platform Overview',
+        link: "https://remme.webflow.io/platform-overview",
+        key: 1
+      },{
+        title: 'REMChain',
+        link: "https://remme.io/remchain",
+        key: 2
+      },{
+        title: 'Community',
+        link: "https://remme.io/community",
+        key: 3
+      }]
+    },{
+      title: 'Resources',
+      icon: 'database',
+      type: 'list',
+      key: 4,
+      items: [{
+          title: 'Blog',
+          link: "https://medium.com/remme",
+          key: 1
+        },{
+          title: 'Knowledge Base',
+          link: "https://support.remme.io/",
+          key: 2
+        },{
+          title: 'Documentation',
+          link: "https://docs.remme.io/",
+          key: 3
+        }]
+      },{
+        title: 'Join Tech Community',
+        link: 'https://remme.io/community#join-tech-community',
+        type: 'button',
+        style: 'default',
+        key: 6,
+      },{
+        title: 'Join Testnet',
+        type: 'button',
+        style: 'primary',
+        key: 5,
+        items: [{
+            title: 'How To Use',
+            link: "https://docs.remme.io/remme-block-explorer/docs/",
+            key: 1
+          },{
+            title: 'Claim Tokens',
+            link: "/claim",
+            key: 2
+          },{
+            title: 'Share Your Feedback',
+            link: "/feedback",
+            key: 3
+          }]
+      }
 ];
 
-const about_menu = (
-  <Menu>
-    <Menu.Item key="0">
-      <a target="_blank" href="https://remme.webflow.io/platform-overview">Platform Overview</a>
-    </Menu.Item>
-    <Menu.Item key="1">
-      <a target="_blank" href="https://remme.io/remchain">REMChain</a>
-    </Menu.Item>
-    <Menu.Item key="2">
-      <a target="_blank" href="https://remme.io/community">Community</a>
-    </Menu.Item>
-  </Menu>
-);
-
-const testnet_menu = (
-  <Menu>
-    <Menu.Item key="0">
-      <a target="_blank" href="https://docs.remme.io/remme-block-explorer/docs/">How To Use</a>
-    </Menu.Item>
-    <Menu.Item key="1">
-      <Link to="/claim">Claim Tokens</Link>
-    </Menu.Item>
-    <Menu.Item key="2">
-      <Link to="/feedback">Share Your Feedback</Link>
-    </Menu.Item>
-  </Menu>
-);
-
-const resources_menu = (
-  <Menu>
-    <Menu.Item key="0">
-      <a target="_blank" href="https://medium.com/remme">Blog</a>
-    </Menu.Item>
-    <Menu.Item key="1">
-      <a target="_blank" href="https://support.remme.io/">Knowledge Base</a>
-    </Menu.Item>
-    <Menu.Item key="2">
-      <a target="_blank" href="https://docs.remme.io/">Documentation</a>
-    </Menu.Item>
-  </Menu>
-);
-
-const blockchain_menu = (
-  <Menu>
-    <Menu.Item key="0">
-      <Link to="/blocks">View Blocks</Link>
-    </Menu.Item>
-    <Menu.Item key="1">
-      <Link to="/transactions">View Txns</Link>
-    </Menu.Item>
-  </Menu>
-);
+const SmartLink = (props) => {
+  return (
+    props.link.substring(0, 4) === 'http'
+    ? <a target="_blank" href={props.link}>{props.children}</a>
+    : <Link to={props.link}>{props.children}</Link>
+  )
+}
 
 class Navigation extends Component {
   render() {
     const { location } = this.props;
     return (
       <div style={{float: "right"}}>
-        <Menu theme="dark" mode="horizontal" defaultSelectedKeys={["/"]} selectedKeys={[location.pathname]}>
-          { NavigationItems.map( item =>
-            <Menu.Item key={item.link}>
-              <Link to={item.link}>
-                <Icon type={item.icon} />
-                <span>{item.title}</span>
-              </Link>
-            </Menu.Item>
-          )}
-        </Menu>
-
-        <Dropdown overlay={blockchain_menu} trigger={['click']}>
-         <a className="ant-nav-dropdown" href="#">
-           <Icon type="bars" /> Blockchain <Icon type="down" />
-         </a>
-        </Dropdown>
-
-        <Dropdown overlay={about_menu} trigger={['click']}>
-         <a className="ant-nav-dropdown" href="#">
-           <Icon type="team" /> About REMME <Icon type="down" />
-         </a>
-        </Dropdown>
-
-        <Dropdown overlay={resources_menu} trigger={['click']}>
-         <a className="ant-nav-dropdown" href="#">
-           <Icon type="database" /> Resources <Icon type="down" />
-         </a>
-        </Dropdown>
-
-        <a target="_blank" href="https://remme.io/community">
-         <Button type="primary" style={{ marginLeft: 8 }}>
-           Join Tech Community
-         </Button>
-        </a>
-
-        <Dropdown overlay={testnet_menu}>
-          <Button style={{ marginLeft: 8 }}>
-            Join Testnet
-          </Button>
-        </Dropdown>
+        { NavigationItems.map( item =>
+          !item.items ?
+            item.type === 'button'
+              ? <SmartLink
+                  key={item.key}
+                  link={item.link} >
+                  <Button type={item.style} style={{ marginLeft: 8 }}>
+                    {item.title}
+                  </Button>
+                </SmartLink>
+              : <Menu key={item.key} theme="dark" mode="horizontal" selectedKeys={[location.pathname]}>
+                  <Menu.Item key={item.link}>
+                    <SmartLink
+                      link={item.link} >
+                        <Icon type={item.icon} />
+                        <span>{item.title}</span>
+                    </SmartLink>
+                  </Menu.Item>
+                </Menu>
+          : <Dropdown
+              key={item.key}
+              overlay={
+                <Menu>
+                  {item.items.map( subitem =>
+                    <Menu.Item key={subitem.key}>
+                      <SmartLink
+                        link={subitem.link} >
+                          {subitem.title}
+                      </SmartLink>
+                    </Menu.Item>
+                  )}
+                </Menu>
+              }>
+               { item.type === 'button'
+                 ? <Button style={{ marginLeft: 8 }} type={item.style}>
+                     {item.title}
+                   </Button>
+                 : <a className="ant-nav-dropdown">
+                     <Icon type={item.icon} /> {item.title} <Icon type="down" />
+                   </a>
+               }
+            </Dropdown>
+        )}
      </div>
     )
   }

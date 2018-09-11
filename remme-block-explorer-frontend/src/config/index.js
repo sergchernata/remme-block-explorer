@@ -6,6 +6,7 @@ const HOST = 'http://localhost:3005';
 //   transactions: `/api/transactions`,
 //   state: `/api/state`,
 //   generateAccount: `/api/generate-account`,
+//   faucet: `/api/faucet`,
 //   coinmarketcap: 'https://api.coinmarketcap.com/v2/ticker/2546/'
 // };
 
@@ -15,5 +16,6 @@ export const urls = {
   transactions: `/api/transactions`,
   state: `/api/state`,
   generateAccount: `/api/generate-account`,
+  faucet: `/api/faucet`,
   coinmarketcap: 'https://api.coinmarketcap.com/v2/ticker/2546/'
 };
