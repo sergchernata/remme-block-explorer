@@ -12,13 +12,13 @@ RUN apk add --update --no-cache \
 
 WORKDIR /app
 
-COPY ./package.json ./package.json
+COPY ./remme-block-explorer-backend/package.json ./package.json
 
 RUN npm install
 
-COPY ./src ./src
-COPY ./.env ./.env
-COPY ./build ./build
+COPY ./remme-block-explorer-backend/src ./src
 RUN npm run build
+
+COPY ./remme-block-explorer-backend/.env ./.env
 
 CMD ["node", "dist/index.js"]
