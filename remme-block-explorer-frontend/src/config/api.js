@@ -17,7 +17,6 @@ const serverRequest = config => async ({ data = false, params = false } = { data
 };
 
 const serverRequestPipe = config => ({ data = null, params = null } = { data: null, params: null }) => {
-  console.log(data, params);
   let { url } = config;
   if (params) {
     url += '?' + Object.entries(params).reduce((prev, [key, val]) => {
@@ -87,6 +86,20 @@ const coinMarketCap = {
   })
 };
 
+const testTokens = {
+  getTestTokens: serverRequest({
+    method: 'POST',
+    url: urls.faucet
+  })
+};
+
+const accountGenerator = {
+  generateKeys: serverRequest({
+    method: 'GET',
+    url: urls.keysGenerator
+  })
+};
+
 export default {
   ...methods("Transactions"),
   ...methodsPipe("Transactions"),
@@ -97,4 +110,6 @@ export default {
   ...coinMarketCap,
   ...blocksTimestamp,
   ...blocksTimestampPipe,
+  ...testTokens,
+  ...accountGenerator
 }

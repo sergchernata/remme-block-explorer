@@ -1,9 +1,8 @@
 import React, { Fragment, Component } from "react";
 import { Modal, Form, Divider, Alert, Row, Col } from "antd";
-import axios from 'axios';
 import download from 'react-file-download';
 
-import { urls } from "../../config";
+import api from "../../config/api";
 import CreateForm from '../../components/CreateForm';
 import "./style.css";
 
@@ -36,50 +35,38 @@ class ClaimForm extends Component {
     }
   ];
 
-  showModal = (response) => {
-    if (response.status == 200) {
-      console.log(response.data);
-      Modal.success({
-        title: 'Success!',
-        content: 'BathcId: ' + response.data.bathcId
-      });
-    } else {
-      Modal.error({
-        title: 'Error!',
-        content: response.data.message ? response.data.message : "The input was not valid."
-      });
+  handleClick = async () => {
+    try {
+      const response = await api.generateKeys();
+      download(JSON.stringify(response), "keystore.txt");
+    } catch (e) {
+      console.log(e);
     }
   }
 
-  handleClick = () => {
-    axios.get(urls.generateAccount)
-    .then(function (response) {
-      const data = {
-        publicKey: response.data.publicKey,
-        privateKey: response.data.privateKey
-      }
-      download(JSON.stringify(data), "keystore.txt");
-    })
-  }
-
-  handleSubmit = (values) => {
+  handleSubmit = async (values) => {
     const { pubKey, login } = values;
-    const data = {
+    const fields = {
       "remmePublicKey": pubKey,
       "discord": login
     };
 
-    axios.post(urls.faucet, {
-      method: 'POST',
-      headers: { 'content-type': 'application/json; charset=utf-8' },
-      data: data
-    })
-      .then(response => {
-        this.showModal(response);
-      })
-      .catch(error => {
-        this.showModal(error.response);
-      });
+    try {
+      const response = await api.getTestTokens({data: fields});
+      if (response.bathcId) {
+        Modal.success({
+          title: 'Success!',
+          content: 'BatchId: ' + response.bathcId
+        });
+      } else {
+        Modal.error({
+          title: 'Error!',
+          content: response.message ? response.message : "The input was not valid."
+        });
+      }
+    } catch (e) {
+      console.log(e);
+    }
   }
 
   render() {
