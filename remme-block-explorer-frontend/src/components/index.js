@@ -12,6 +12,7 @@ import CreateList from './CreateList';
 import Social from './Social';
 import DetailView from './DetailView';
 import CardWrap from "./CardWrap";
+import SmartLink from "./SmartLink";
 
 export {
   BlocksTable,
@@ -28,4 +29,5 @@ export {
   Social,
   DetailView,
   CardWrap,
+  SmartLink
 };

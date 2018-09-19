@@ -2,6 +2,9 @@ import React, { Component } from 'react'
 import { Link, withRouter } from 'react-router-dom';
 import { Menu, Icon, Dropdown, Button } from 'antd';
 
+import { SmartLink } from "../../components";
+
+
 const NavigationItems = [
   {
     title: 'Home',
@@ -85,14 +88,6 @@ const NavigationItems = [
           }]
       }
 ];
-
-const SmartLink = (props) => {
-  return (
-    props.link.substring(0, 4) === 'http'
-    ? <a target="_blank" href={props.link}>{props.children}</a>
-    : <Link to={props.link}>{props.children}</Link>
-  )
-}
 
 class Navigation extends Component {
   render() {
