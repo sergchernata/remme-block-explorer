@@ -44,8 +44,7 @@ class ClaimForm extends Component {
     }
   }
 
-  handleSubmit = async (values) => {
-    const { pubKey, login } = values;
+  handleSubmit = async ({ pubKey, login }) => {
     const fields = {
       "remmePublicKey": pubKey,
       "discord": login
@@ -53,15 +52,16 @@ class ClaimForm extends Component {
 
     try {
       const response = await api.getTestTokens({data: fields});
-      if (response.bathcId) {
+      const { bathcId, message }  = response;
+      if (bathcId) {
         Modal.success({
           title: 'Success!',
-          content: 'BatchId: ' + response.bathcId
+          content: 'BatchId: ' + bathcId
         });
       } else {
         Modal.error({
           title: 'Error!',
-          content: response.message ? response.message : "The input was not valid."
+          content: message || "The input was not valid."
         });
       }
     } catch (e) {
