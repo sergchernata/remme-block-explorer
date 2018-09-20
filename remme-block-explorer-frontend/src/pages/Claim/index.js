@@ -51,8 +51,7 @@ class ClaimForm extends Component {
     };
 
     try {
-      const response = await api.getTestTokens({data: fields});
-      const { bathcId, message }  = response;
+      const { bathcId, message } = await api.getTestTokens({data: fields});
       if (bathcId) {
         Modal.success({
           title: 'Success!',
