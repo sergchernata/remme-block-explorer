@@ -103,6 +103,7 @@ body {
 .content-wrap {
   max-width: 1200px;
   margin: 20px auto;
+  word-break: break-all;
 }
 
 .ant-avatar-square {
